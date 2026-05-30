@@ -130,6 +130,19 @@ function installDiagramLightbox() {
   }
 }
 
+
+let lightboxObserver: MutationObserver | undefined
+
+function ensureDiagramLightboxObserver() {
+  if (lightboxObserver || typeof document === 'undefined') return
+
+  lightboxObserver = new MutationObserver(() => installDiagramLightbox())
+  lightboxObserver.observe(document.body, {
+    childList: true,
+    subtree: true
+  })
+}
+
 const CopyMarkdownButton = defineComponent({
   name: 'CopyMarkdownButton',
   setup() {
@@ -140,9 +153,11 @@ const CopyMarkdownButton = defineComponent({
         const existing = document.querySelector<HTMLButtonElement>('.ac-copy-md')
         if (existing) existing.dataset.path = route.path
         const scheduleInstall = () => {
+          ensureDiagramLightboxObserver()
           installDiagramLightbox()
           window.setTimeout(installDiagramLightbox, 300)
           window.setTimeout(installDiagramLightbox, 1000)
+          window.setTimeout(installDiagramLightbox, 2500)
         }
         nextTick(scheduleInstall)
       }

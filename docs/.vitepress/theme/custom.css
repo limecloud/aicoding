@@ -309,3 +309,29 @@
   background: #ffffff !important;
   fill: #ffffff !important;
 }
+
+.ac-lightbox__stage svg .flowchart-link,
+.ac-lightbox__stage svg g.edgePath path,
+.ac-lightbox__stage svg g.edgePaths path,
+.ac-lightbox__stage svg path[class*="flowchart"],
+.ac-lightbox__stage svg path[class*="edge"],
+.ac-lightbox__stage svg .edge-thickness-normal,
+.ac-lightbox__stage svg .edge-thickness-thick,
+.ac-lightbox__stage svg .edge-pattern-solid {
+  fill: none !important;
+  stroke: #4b5563 !important;
+  stroke-width: 2px !important;
+}
+
+.ac-lightbox__stage svg .edge-thickness-thick {
+  stroke-width: 2.4px !important;
+}
+
+.ac-lightbox__stage svg .marker,
+.ac-lightbox__stage svg marker,
+.ac-lightbox__stage svg marker *,
+.ac-lightbox__stage svg defs marker path {
+  fill: #4b5563 !important;
+  stroke: #4b5563 !important;
+  stroke-width: 1px !important;
+}
