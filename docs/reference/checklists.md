@@ -1,19 +1,19 @@
 # 检查清单
 
-检查清单用于辅助 AI reviewer 和人类 owner，不应该变成人工逐项打勾的负担。
+检查清单用于辅助 AI 审查 Agent和人类负责人，不应该变成人工逐项打勾的负担。
 
 ## AI 生成变更进入人类裁决前
 
 - [ ] 任务是小切片。
-- [ ] PRD 每条验收标准都有证据。
-- [ ] Implementer 已运行最小验证。
-- [ ] Spec Reviewer 已完成。
-- [ ] Test Skeptic 已完成。
-- [ ] Security Red Team 对高风险面已完成。
-- [ ] Governance Reviewer 已完成。
-- [ ] Judge Agent 已聚合报告。
-- [ ] blocker 已修复或等待人类裁决。
-- [ ] high 风险有 owner、影响面、修复建议。
+- [ ] 需求说明 每条验收标准都有证据。
+- [ ] 实现 Agent已运行最小验证。
+- [ ] 需求审查 Agent已完成。
+- [ ] 测试质疑 Agent已完成。
+- [ ] 安全红队 Agent对高风险面已完成。
+- [ ] 治理审查 Agent已完成。
+- [ ] 汇总裁决 Agent已聚合报告。
+- [ ] 阻断级问题已修复或等待人类裁决。
+- [ ] 高风险问题有负责人、影响面、修复建议。
 
 ## 人类最终裁决
 
@@ -26,10 +26,10 @@
 
 ## 高风险文件
 
-- [ ] auth / session / token
+- [ ] auth / session / Token
 - [ ] RBAC / permission / tenant
-- [ ] migration / data write / delete
+- [ ] 迁移 / data write / delete
 - [ ] API contract / SDK / types
-- [ ] CI/CD / deploy / package scripts
-- [ ] env / secrets / config
+- [ ] CI/CD / deploy / 包脚本
+- [ ] env / 密钥 / config
 - [ ] billing / payment / quota

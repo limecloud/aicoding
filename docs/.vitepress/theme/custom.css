@@ -213,22 +213,51 @@
 .ac-lightbox__stage img {
   display: block;
   width: auto;
-  max-width: none;
   height: auto;
 }
 
-.ac-lightbox__stage svg {
+.ac-lightbox__stage[data-mode="fit"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(96vw, 1600px);
+  height: 88vh;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.ac-lightbox__stage[data-mode="fit"] svg,
+.ac-lightbox__stage[data-mode="fit"] img {
+  max-width: 100%;
+  max-height: 100%;
+  min-width: 0 !important;
+  object-fit: contain;
+}
+
+.ac-lightbox__stage[data-mode="actual"] svg,
+.ac-lightbox__stage[data-mode="actual"] img {
+  max-width: none;
+}
+
+.ac-lightbox__stage[data-mode="actual"] svg {
   min-width: 1600px;
 }
 
-.ac-lightbox__stage img {
-  min-width: min(1600px, 92vw);
+.ac-lightbox__stage[data-mode="actual"] img {
+  width: 1600px;
+  min-width: 1600px;
 }
 
-.ac-lightbox__close {
+.ac-lightbox__controls {
   position: fixed;
   top: 1.2rem;
   right: 1.2rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ac-lightbox__close,
+.ac-lightbox__mode {
   border: 1px solid rgba(255, 255, 255, 0.34);
   border-radius: 999px;
   padding: 0.45rem 0.8rem;
@@ -236,6 +265,12 @@
   color: #fff;
   font-weight: 800;
   cursor: pointer;
+}
+
+.ac-lightbox__mode:disabled {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.28);
+  cursor: default;
 }
 
 .ac-lightbox__hint {
@@ -260,8 +295,24 @@
     max-height: 84vh;
   }
 
-  .ac-lightbox__stage svg {
+  .ac-lightbox__stage[data-mode="fit"] {
+    height: 84vh;
+  }
+
+  .ac-lightbox__stage[data-mode="actual"] svg {
     min-width: 1200px;
+  }
+
+  .ac-lightbox__stage[data-mode="actual"] img {
+    width: 1200px;
+    min-width: 1200px;
+  }
+
+  .ac-lightbox__controls {
+    left: 1rem;
+    right: 1rem;
+    justify-content: flex-end;
+    flex-wrap: wrap;
   }
 }
 
@@ -334,4 +385,15 @@
   fill: #4b5563 !important;
   stroke: #4b5563 !important;
   stroke-width: 1px !important;
+}
+
+.vp-doc img[src$="ai-coding-workflow.svg"] {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 1.5rem auto 2rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 20px;
+  background: var(--vp-c-bg-soft);
+  cursor: zoom-in;
 }

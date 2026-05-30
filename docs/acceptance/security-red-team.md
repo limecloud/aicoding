@@ -1,23 +1,23 @@
-# 安全红队：Security Red Team
+# 安全红队 Agent
 
-安全审查不能只是普通 code review 的一项 checklist。AI Coding 中，Security Red Team 应独立运行，默认假设攻击者知道前端、API 和常见绕过方式。
+安全审查不能只是普通代码审查里顺手看一眼。AI Coding 中，安全红队 Agent 应独立运行，并默认站在攻击者视角：攻击者知道前端、API 和常见绕过方式，会尝试组合多个小缺口形成真实攻击路径。
 
 ## 重点范围
 
 | 范围 | 典型风险 |
 | --- | --- |
-| Auth / Session | token 泄漏、过期处理错误、登录态混淆 |
-| RBAC / Permission | 角色绕过、前端控制代替后端校验 |
-| Tenant 隔离 | 跨租户读写、查询条件遗漏 |
+| 认证与会话 | Token 泄漏、过期处理错误、登录态混淆 |
+| 角色与权限 | 角色绕过、前端控制代替服务端校验 |
+| 租户隔离 | 跨租户读写、查询条件遗漏 |
 | 数据写入 | 批量更新误伤、幂等缺失、事务边界错误 |
 | 输入边界 | SQL 注入、XSS、命令注入、SSRF |
-| Secrets / Env | 日志泄漏、默认密钥、CI 变量暴露 |
-| CI/CD | package scripts、workflow 权限、deploy token 滥用 |
+| 密钥与环境变量 | 日志泄漏、默认密钥、CI 变量暴露 |
+| CI/CD | 包脚本、工作流权限、部署 Token 滥用 |
 | 依赖 | 新增依赖供应链风险、postinstall 风险 |
 
 ## 红队输出
 
-安全 finding 不应该只是“可能有漏洞”，而应尽量给出攻击路径：
+安全问题不应该只写“可能有漏洞”，而要尽量给出可理解的攻击路径：
 
 ```json
 {
@@ -44,20 +44,20 @@
 - AI 无法确认攻击路径是否可达。
 - 修复会改变兼容策略或用户权限模型。
 
-## Prompt
+## 提示词
 
 ```text
-你是 Security Red Team Reviewer。不要修改代码。
+你是安全红队 Agent。不要修改代码。
 
-请基于当前 diff 和相关调用链寻找可利用风险。重点审查 auth、tenant、RBAC、数据写入、输入边界、secrets、CI/CD、依赖和日志。
+请基于当前代码差异和相关调用链寻找可利用风险。重点审查认证、租户、RBAC、数据写入、输入边界、密钥、CI/CD、依赖和日志。
 
-每个 finding 必须包含：
+每个问题必须包含：
 - severity
 - attack_path
 - impact
-- evidence: file:line
+- evidence：文件位置
 - verification 或复现步骤
 - suggested_fix
 
-如果无法确认安全，不要输出 pass，输出 needs_human 和 missing_evidence。
+如果无法确认安全，不要输出 通过；输出 needs_human，并说明缺少哪些证据。
 ```

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1880 540" role="img" aria-labelledby="title desc">
+  <title id="title">AI Coding full workflow</title>
+  <desc id="desc">A readable horizontal workflow from PRD and issue to task slicing, context pack, implementation, self check, AI review, human decision, release, and feedback learning.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M2 2l8 4-8 4" fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f0fdfa"/><stop offset="1" stop-color="#fff7ed"/></linearGradient>
+    <style>
+      .box{fill:#f3f0ff;stroke:#8b7cf6;stroke-width:2;rx:14}.decision{fill:#f3f0ff;stroke:#8b7cf6;stroke-width:2}.label{font-family:Inter,Segoe UI,Arial,sans-serif;font-size:24px;fill:#1f2937}.small{font-size:18px;fill:#475569}.edge{fill:none;stroke:#334155;stroke-width:3;marker-end:url(#arrow)}.return{fill:none;stroke:#0f766e;stroke-width:3;stroke-dasharray:8 8;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect x="12" y="12" width="1856" height="516" rx="28" fill="url(#bg)" stroke="#d7e1e8"/>
+  <g transform="translate(54 94)">
+    <rect class="box" x="0" y="90" width="170" height="76"/><text class="label" x="85" y="137" text-anchor="middle">PRD / Issue</text>
+    <rect class="box" x="230" y="90" width="170" height="76"/><text class="label" x="315" y="137" text-anchor="middle">任务切片</text>
+    <rect class="box" x="460" y="90" width="170" height="76"/><text class="label" x="545" y="137" text-anchor="middle">上下文包</text>
+    <rect class="box" x="690" y="90" width="190" height="76"/><text class="label" x="785" y="137" text-anchor="middle">实现 Agent</text>
+    <rect class="box" x="940" y="90" width="140" height="76"/><text class="label" x="1010" y="137" text-anchor="middle">自检</text>
+    <rect class="box" x="1140" y="90" width="220" height="76"/><text class="label" x="1250" y="137" text-anchor="middle">审查 Agent 组</text>
+    <rect class="box" x="1415" y="30" width="170" height="66"/><text class="small" x="1500" y="70" text-anchor="middle">测试质疑 Agent</text>
+    <rect class="box" x="1415" y="160" width="210" height="66"/><text class="small" x="1520" y="200" text-anchor="middle">安全红队 Agent</text>
+    <rect class="box" x="1645" y="90" width="180" height="76"/><text class="small" x="1735" y="137" text-anchor="middle">汇总裁决 Agent</text>
+
+    <path class="edge" d="M170 128H230"/><path class="edge" d="M400 128H460"/><path class="edge" d="M630 128H690"/><path class="edge" d="M880 128H940"/><path class="edge" d="M1080 128H1140"/>
+    <path class="edge" d="M1360 128C1392 128 1382 63 1415 63"/><path class="edge" d="M1360 128C1392 128 1382 193 1415 193"/>
+    <path class="edge" d="M1585 63C1620 63 1610 128 1645 128"/><path class="edge" d="M1625 193C1652 193 1620 128 1645 128"/>
+  </g>
+  <g transform="translate(54 320)">
+    <polygon class="decision" points="1510,0 1594,84 1510,168 1426,84"/><text class="label" x="1510" y="92" text-anchor="middle">人类裁决</text>
+    <rect class="box" x="1660" y="46" width="170" height="76"/><text class="small" x="1745" y="92" text-anchor="middle">发布 / 灰度</text>
+    <rect class="box" x="1460" y="230" width="170" height="76"/><text class="small" x="1545" y="276" text-anchor="middle">反馈学习</text>
+    <path class="edge" d="M1771 -98C1808 -98 1776 84 1660 84" transform="translate(-54 0)"/>
+    <path class="edge" d="M1594 84H1660"/><text class="small" x="1624" y="70" text-anchor="middle">接受</text>
+    <path class="edge" d="M1830 84C1890 84 1805 268 1630 268"/>
+    <path class="return" d="M1460 268C940 360 180 340 80 166"/><text class="small" x="780" y="310" text-anchor="middle">反馈进入下一轮上下文</text>
+    <path class="return" d="M1426 84C1080 180 780 160 745 -60"/><text class="small" x="1050" y="150" text-anchor="middle">修复</text>
+  </g>
+</svg>

@@ -4,6 +4,7 @@ const base = process.env.VITEPRESS_BASE || '/'
 
 const nav = [
   { text: '起步', link: '/guide/why-ai-coding' },
+  { text: '全景', link: '/landscape/knowledge-map' },
   { text: '工作流', link: '/workflow/overview' },
   { text: 'Harness', link: '/harness/overview' },
   { text: '验收', link: '/acceptance/ai-native-acceptance' },
@@ -25,6 +26,25 @@ const sidebar = [
     ]
   },
   {
+    text: '全景知识库',
+    items: [
+      { text: '知识地图', link: '/landscape/knowledge-map' },
+      { text: 'Token 预算与取舍', link: '/landscape/token-budget' },
+      { text: '工具生态', link: '/landscape/tool-ecosystem' },
+      { text: '上下文与记忆', link: '/landscape/context-and-memory' },
+      { text: '仓库理解与事实源', link: '/landscape/repo-understanding' },
+      { text: '协议与 Runtime', link: '/landscape/protocols-and-runtime' },
+      { text: 'Benchmark 与 Evals', link: '/landscape/benchmark-and-evals' },
+      { text: '安全与风险', link: '/landscape/security-and-risk' },
+      { text: '产品与视觉验收', link: '/landscape/product-and-design' },
+      { text: '数据与迁移', link: '/landscape/data-and-migrations' },
+      { text: '观测与成本', link: '/landscape/observability-and-cost' },
+      { text: '法务与合规', link: '/landscape/legal-and-compliance' },
+      { text: '失败模式', link: '/landscape/failure-modes' },
+      { text: '落地路线图', link: '/landscape/adoption-roadmap' }
+    ]
+  },
+  {
     text: '工作流',
     items: [
       { text: '全流程地图', link: '/workflow/overview' },
@@ -35,7 +55,7 @@ const sidebar = [
     ]
   },
   {
-    text: 'Harness Engine',
+    text: 'Harness 引擎',
     items: [
       { text: 'Harness 总览', link: '/harness/overview' },
       { text: '业界模式整理', link: '/harness/industry-patterns' },
@@ -43,10 +63,10 @@ const sidebar = [
     ]
   },
   {
-    text: 'AI-Native 验收',
+    text: 'AI 原生验收',
     items: [
       { text: '验收总览', link: '/acceptance/ai-native-acceptance' },
-      { text: 'Reviewer Swarm', link: '/acceptance/reviewer-swarm' },
+      { text: '审查 Agent 组', link: '/acceptance/reviewer-swarm' },
       { text: '测试审查', link: '/acceptance/test-skeptic' },
       { text: '安全红队', link: '/acceptance/security-red-team' },
       { text: '证据包与人类裁决', link: '/acceptance/evidence-and-human-arbiter' }
@@ -74,8 +94,8 @@ const sidebar = [
   {
     text: '参考',
     items: [
-      { text: 'Prompt 模板库', link: '/reference/prompt-library' },
-      { text: 'AI Reviewer JSON 契约', link: '/reference/reviewer-contract' },
+      { text: '提示词模板库', link: '/reference/prompt-library' },
+      { text: 'AI 审查 JSON 契约', link: '/reference/reviewer-contract' },
       { text: '检查清单', link: '/reference/checklists' },
       { text: '术语表', link: '/reference/glossary' }
     ]

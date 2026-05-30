@@ -73,22 +73,51 @@ function openDiagramLightbox(source: Element) {
 
   const stage = document.createElement('div')
   stage.className = 'ac-lightbox__stage'
+  stage.dataset.mode = 'fit'
 
   const close = document.createElement('button')
   close.className = 'ac-lightbox__close'
   close.type = 'button'
   close.textContent = '关闭'
 
+  const fit = document.createElement('button')
+  fit.className = 'ac-lightbox__mode'
+  fit.type = 'button'
+  fit.textContent = '适配窗口'
+  fit.disabled = true
+
+  const actual = document.createElement('button')
+  actual.className = 'ac-lightbox__mode'
+  actual.type = 'button'
+  actual.textContent = '原始尺寸'
+
+  const controls = document.createElement('div')
+  controls.className = 'ac-lightbox__controls'
+  controls.append(fit, actual, close)
+
   const hint = document.createElement('div')
   hint.className = 'ac-lightbox__hint'
-  hint.textContent = '滚动查看大图，按 Esc 关闭'
+  hint.textContent = '默认完整适配窗口；切换原始尺寸后可滚动查看细节，按 Esc 关闭'
 
   const clone = source.cloneNode(true) as Element
   clone.removeAttribute('id')
+  clone.removeAttribute('data-lightbox-ready')
+  clone.removeAttribute('role')
+  clone.removeAttribute('aria-label')
+  clone.removeAttribute('tabindex')
   stage.appendChild(clone)
-  overlay.append(close, stage, hint)
+  overlay.append(controls, stage, hint)
   document.body.appendChild(overlay)
   document.body.style.overflow = 'hidden'
+
+  const setMode = (mode: 'fit' | 'actual') => {
+    stage.dataset.mode = mode
+    fit.disabled = mode === 'fit'
+    actual.disabled = mode === 'actual'
+    hint.textContent = mode === 'fit'
+      ? '默认完整适配窗口；切换原始尺寸后可滚动查看细节，按 Esc 关闭'
+      : '原始尺寸模式：滚动查看细节，点“适配窗口”回到完整视图'
+  }
 
   const cleanup = () => {
     document.body.style.overflow = ''
@@ -101,6 +130,9 @@ function openDiagramLightbox(source: Element) {
   }
 
   close.addEventListener('click', cleanup)
+  fit.addEventListener('click', () => setMode('fit'))
+  actual.addEventListener('click', () => setMode('actual'))
+  stage.addEventListener('dblclick', () => setMode(stage.dataset.mode === 'fit' ? 'actual' : 'fit'))
   overlay.addEventListener('click', (event) => {
     if (event.target === overlay) cleanup()
   })
@@ -110,7 +142,7 @@ function openDiagramLightbox(source: Element) {
 function installDiagramLightbox() {
   const targets = [
     ...document.querySelectorAll('.ac-mermaid__canvas svg'),
-    ...document.querySelectorAll('img[src$="harness-engine-shift.svg"]')
+    ...document.querySelectorAll('img[src$=".svg"]')
   ]
 
   for (const target of targets) {

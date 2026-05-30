@@ -1,36 +1,47 @@
 # AI Coding Full Context
 
-This site defines an AI-native software engineering workflow.
+本站定义一套 AI 原生软件工程工作流。
 
-## Operating model
+## 运行模型
 
-AI Coding requires small vertical slices, explicit context packs, independent AI reviewers, evidence packages, and human arbitration. AI implementers should not approve their own work. Reviewers should be isolated, read-only, and evidence-bound.
+AI Coding 需要小切片、明确上下文包、独立 AI 审查、证据包和人工裁决。实现 Agent 不批准自己；审查 Agent 应只读、独立、绑定证据。
 
+## 全景
 
-## Harness Engine
+全景模块覆盖模型能力、上下文、Harness / 运行时、验证、交付、治理、Token 预算、工具生态、仓库理解、Benchmark、本地评估集、安全、产品与设计、数据迁移、可观测性、成本、法务合规、落地路线图和失败模式。
 
-The site treats Harness Engine as the system layer around models and context. It includes context assembly, planning, tool runtime, workflow graphs, reviewer swarm, evidence store, policy/security, human gates, release orchestration, telemetry, and feedback learning. It synthesizes patterns from Anthropic harness design for long-running apps, OpenAI's practical guide to building agents, and LangChain/LangGraph's distinction between frameworks, runtimes, and harnesses.
+## 按预算取舍
 
-## Acceptance model
+AI Coding 不是越完整越好。完整审查组、长上下文、端到端测试、红队、评估集和证据包都会消耗 Token、时间、CI 和人类注意力。本站使用三档流程：
 
-The acceptance pipeline is:
+1. 简化模式：低风险、可回滚、小改动。保留最小上下文、最小验证、一个定向审查 Agent 和人工抽样。
+2. 标准模式：普通功能切片。使用上下文包、自检、需求/代码/测试审查和关键路径证据。
+3. 严控模式：认证、租户、支付、数据迁移、生产写入和发布。保留完整审查组、测试质疑、安全红队、回滚证据和人工关口。
 
-1. Implementer Agent writes the slice.
-2. Self Check runs minimal verification.
-3. Reviewer Swarm runs independent reviews: spec, code, test, security, governance, UX, release.
-4. Test Skeptic attacks the tests and proposes mutation scenarios.
-5. Security Red Team looks for attack paths in auth, tenant, RBAC, data writes, secrets, CI/CD, dependencies, and logs.
-6. Judge Agent deduplicates findings, assigns severity, and produces a short human decision report.
-7. Human Arbiter accepts, rejects, requests fixes, or records a risk waiver.
+如果所需严谨度超过预算，先缩小范围，不要跳过高风险验证。
 
-## Reviewer output
+## Harness 引擎
 
-Reviewers should output JSON with verdict, confidence, findings, missing_evidence, and human_decision_required. Findings require severity, type, file, line, claim, evidence, repro, suggested_fix, and status.
+Harness 是模型和上下文之外的工程运行层，包括上下文组装、任务规划、工具运行层、工作流图、审查 Agent 组、证据库、权限安全、人工关口、发布编排、观测和反馈学习。本站综合 Anthropic Harness、OpenAI Agents / Codex、Claude Code Best Practices、LangChain / LangGraph 的相关实践。
 
-## Appendix sources
+## 验收模型
 
-The appendix maps Claude Code Best Practices, OpenAI Building Agents, and LangChain framework/runtime/harness concepts into this site, especially verification-first workflows, explore-plan-code-review loops, rich context, subagents, permissions, MCP, hooks, skills, session management, non-interactive mode, and scaling patterns.
+验收流程：
 
-## Human role
+1. 实现 Agent 完成当前切片。
+2. 自检运行最小验证。
+3. 审查 Agent 组独立审查需求、代码、测试、安全、治理、体验和发布。
+4. 测试质疑 Agent 攻击测试有效性。
+5. 安全红队 Agent 寻找认证、租户、RBAC、数据写入、密钥、CI/CD、依赖和日志风险。
+6. 汇总裁决 Agent 去重、定级，生成简短的人类裁决报告。
+7. 人类负责人接受、退回、要求修复或记录风险豁免。
 
-Humans decide product behavior, risk acceptance, architecture direction, unresolved security concerns, and reviewer conflicts. Humans should not be forced to manually review all generated code before AI review.
+验收强度取决于风险和预算。低风险任务可以简化；高风险任务不能因为 Token 不够而跳过安全、数据、发布或人工关口。
+
+## 审查输出
+
+审查 Agent 应输出结构化 JSON，包括 verdict、confidence、findings、missing_evidence、human_decision_required。每个 finding 应包含 severity、type、file、line、claim、evidence、repro、suggested_fix 和 status。
+
+## 人类角色
+
+人类负责产品行为、风险接受、架构方向、无法解决的安全问题、审查冲突，以及预算不足时是否缩小范围或改用人工验证。人不应该在 AI 审查前被迫从零审完整个代码差异。

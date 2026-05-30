@@ -1,30 +1,30 @@
 # 安全与权限
 
-AI Coding 会放大安全风险，因为 AI 经常根据局部模式补代码，却无法天然理解组织的威胁模型。安全规则必须写成事实源，并由独立 reviewer 执行。
+AI Coding 会放大安全风险，因为 AI 经常根据局部模式补代码，却无法天然理解组织的威胁模型。安全规则必须写成事实源，并由独立审查 Agent 执行。
 
 ## 高风险变更
 
 以下变更默认需要安全红队审查：
 
-- 登录、session、token、OAuth、SSO。
+- 登录、session、Token、OAuth、SSO。
 - 权限、角色、租户隔离、管理员能力。
 - 数据删除、批量更新、迁移、导入导出。
 - webhook、外部 URL、文件上传、命令执行。
-- secrets、环境变量、CI/CD、部署脚本。
-- 新增依赖、package scripts、Dockerfile。
+- 密钥、环境变量、CI/CD、部署脚本。
+- 新增依赖、包脚本、Dockerfile。
 
 ## 安全默认值
 
 - 权限必须在服务端校验，前端只能做体验优化。
 - 多租户查询必须默认带 tenant scope。
 - 写操作必须考虑幂等、事务和审计。
-- 错误信息不能泄漏内部路径、token、SQL、密钥。
+- 错误信息不能泄漏内部路径、Token、SQL、密钥。
 - 日志中不能输出敏感字段。
-- CI/CD token 最小权限，PR 上下文必须防 prompt injection。
+- CI/CD Token 最小权限，PR 上下文必须防提示词注入。
 
 ## AI 安全上下文
 
-给安全 reviewer 的上下文应包含：
+给安全审查 Agent 的上下文应包含：
 
 - 权限模型说明。
 - 租户隔离规则。
