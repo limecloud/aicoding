@@ -4,7 +4,7 @@ AI Coding 的关键不是“让 AI 多写”，而是让每个阶段都有明确
 
 ```mermaid
 flowchart LR
-  A[PRD/Issue] --> B[任务切片]
+  A[PRD / Issue] --> B[任务切片]
   B --> C[上下文包]
   C --> D[实现 Agent]
   D --> E[自检]
@@ -15,7 +15,7 @@ flowchart LR
   H --> I
   I --> J{人类裁决}
   J -->|修复| D
-  J -->|接受| K[发布/灰度]
+  J -->|接受| K[发布 / 灰度]
   K --> L[反馈学习]
   L --> A
 ```
