@@ -8,7 +8,7 @@ AI Coding 不能只看模型排行榜。Benchmark 可以帮助判断能力上限
 | --- | --- | --- | --- |
 | 函数/算法级 | HumanEval、MBPP | 小函数正确性 | 不代表仓库级能力 |
 | Issue 修复级 | SWE-bench、SWE-bench Verified | 真实 GitHub issue 修复 | 依赖测试和任务筛选，不能代表你的业务 |
-| 多语言/复杂仓库 | SWE-PolyBench、GitTaskBench | 跨语言、复杂仓库导航 | 成本高，结果受 Agent 脚手架 影响 |
+| 多语言/复杂仓库 | SWE-PolyBench、GitTaskBench | 跨语言、复杂仓库导航 | 成本高，结果受 Agent 脚手架影响 |
 | 环境搭建 | SetupBench | bootstrap 开发环境能力 | 只覆盖环境能力，不覆盖产品质量 |
 | 项目级交付 | ProjDevBench、SWE-WebDevBench | 从需求到项目 | 更接近真实，但评价更复杂 |
 | 团队本地评估集 | 自有历史 issue、回归用例、事故复盘 | 你的业务和架构 | 需要持续维护 |
@@ -46,7 +46,7 @@ regression-risks/
 - 必须通过的验证。
 - 隐藏风险点。
 - 期望审查 Agent 发现的问题。
-- 人类裁决标准。
+- 人工裁决标准。
 
 ## AI Coding 指标
 
@@ -56,7 +56,7 @@ regression-risks/
 | 审查有效发现率 | AI 审查 Agent 发现有效问题的比例 |
 | 误报率 | AI 审查 Agent 噪音比例 |
 | 弱测试发现率 | 测试质疑 Agent 找到弱测试的比例 |
-| 人工升级率 | 需要人类裁决的比例 |
+| 人工升级率 | 需要人工裁决的比例 |
 | 返工轮次 | 平均修复循环次数 |
 | 逃逸缺陷数 | 合并后逃逸缺陷 |
 | 发布回滚率 | 发布后回滚比例 |

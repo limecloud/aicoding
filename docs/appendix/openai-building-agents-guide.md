@@ -3,7 +3,7 @@
 > 原文：<https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/>  
 > PDF：<https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf>
 >
-> 版权说明：本站不逐字镜像或逐字翻译原文。以下是面向 AI Coding / Harness 引擎 的中文转述、结构化导读和工程落地清单。
+> 版权说明：本站不逐字镜像或逐字翻译原文。以下是面向 AI Coding / Harness 引擎的中文转述、结构化导读和工程落地清单。
 
 ## 为什么放进 Harness 引擎附录
 
@@ -141,9 +141,9 @@ OpenAI 建议先最大化单个 Agent 的能力，再在必要时增加多 Agent
 
 - 实现阶段：优先单实现 Agent，避免多人同时改同一区域。
 - 调研阶段：可以多 Agent 并行探索不同模块。
-- 审查阶段：适合多审查 Agent分工审查。
-- 安全阶段：必须独立 红队，不依赖实现 Agent自评。
-- 汇总阶段：必须有汇总裁决 Agent，避免人类面对多份散乱报告。
+- 审查阶段：适合多审查 Agent 分工审查。
+- 安全阶段：必须独立红队，不依赖实现 Agent 自评。
+- 汇总阶段：必须有汇总裁决 Agent，避免人面对多份散乱报告。
 
 多 Agent 的目标不是热闹，而是降低上下文污染和审查盲区。
 
@@ -171,7 +171,7 @@ OpenAI 把人工介入视为生产 Agent 的关键机制。本站把它命名为
 - 涉及删除、迁移、发布、生产 API。
 - 涉及安全、权限、租户、支付、计费。
 - 需要产品或架构方向判断。
-- 审查 Agent输出 `needs_human`。
+- 审查 Agent 输出 `needs_human`。
 - 风险豁免需要负责人和过期时间。
 
 人工关口输出不应该是聊天式“你怎么看”，而应该是结构化决策：
@@ -220,7 +220,7 @@ OpenAI 把人工介入视为生产 Agent 的关键机制。本站把它命名为
 ## 和本站模块的映射
 
 - Harness 引擎：Agent 组成、工具、执行循环、护栏。
-- AI 原生验收：AI 先审、汇总裁决 Agent、人工关口。
+- AI 先审验收：AI 先审、汇总裁决 Agent、人工关口。
 - 工程质量：安全、测试、发布、可维护性。
 - 团队落地：指标、噪音治理、工具选型。
 

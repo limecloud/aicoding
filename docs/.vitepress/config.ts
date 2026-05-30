@@ -63,13 +63,13 @@ const sidebar = [
     ]
   },
   {
-    text: 'AI 原生验收',
+    text: 'AI 先审验收',
     items: [
       { text: '验收总览', link: '/acceptance/ai-native-acceptance' },
       { text: '审查 Agent 组', link: '/acceptance/reviewer-swarm' },
       { text: '测试审查', link: '/acceptance/test-skeptic' },
       { text: '安全红队', link: '/acceptance/security-red-team' },
-      { text: '证据包与人类裁决', link: '/acceptance/evidence-and-human-arbiter' }
+      { text: '证据包与人工裁决', link: '/acceptance/evidence-and-human-arbiter' }
     ]
   },
   {
@@ -114,7 +114,7 @@ const sidebar = [
 export default defineConfig({
   base,
   title: 'AI Coding',
-  description: '面向 AI-native 软件工程的全流程知识站。',
+  description: '面向 AI 时代软件工程的全流程知识站。',
   cleanUrls: true,
   lastUpdated: true,
   metaChunk: true,
@@ -122,7 +122,7 @@ export default defineConfig({
     ['link', { rel: 'icon', href: `${base}favicon.svg` }],
     ['meta', { name: 'theme-color', content: '#0f2f3d' }],
     ['meta', { property: 'og:title', content: 'AI Coding' }],
-    ['meta', { property: 'og:description', content: '面向 AI-native 软件工程的全流程知识站。' }]
+    ['meta', { property: 'og:description', content: '面向 AI 时代软件工程的全流程知识站。' }]
   ],
   themeConfig: {
     logo: '/favicon.svg',
@@ -135,8 +135,8 @@ export default defineConfig({
       text: '在 GitHub 编辑本页'
     },
     footer: {
-      message: 'AI-native software engineering playbook for teams that ship with coding agents.',
-      copyright: 'Released for discussion and implementation.'
+      message: '给使用 Coding Agent 交付软件的团队准备的 AI Coding 知识库。',
+      copyright: '用于讨论、落地和持续迭代。'
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/limecloud/aicoding' }

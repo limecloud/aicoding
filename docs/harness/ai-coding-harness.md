@@ -1,6 +1,6 @@
 # AI Coding Harness 蓝图
 
-AI Coding 的 Harness 是把编码 Agent 接入真实工程系统的运行层。它不是单个提示词，也不是某个供应商 SDK，而是一组可组合的工程组件。
+AI Coding 的 Harness，是把编码 Agent 接入真实工程系统的运行层。它不是单个提示词，也不是某个供应商 SDK，而是一组可以组合的工程组件。
 
 ## 目标架构
 
@@ -57,7 +57,7 @@ OpenAI 的工具分级思路可以直接用于 AI Coding：
 
 ## 状态与证据
 
-长任务不能依赖一条长聊天历史。Harness 应保存：
+长任务不能依赖一条很长的聊天历史。Harness 应保存：
 
 - `task-slice.md`：当前切片目标、非目标、验收标准。
 - `context-pack.md`：规则、相关代码、验证命令、风险面。

@@ -4,7 +4,7 @@
 > LangGraph Overview：<https://docs.langchain.com/oss/python/langgraph/overview>  
 > 相关博客：<https://www.langchain.com/blog/agent-frameworks-runtimes-and-harnesses-oh-my>
 >
-> 版权说明：本站不逐字镜像或逐字翻译原文。以下是面向 AI Coding / Harness 引擎 的中文转述、结构化导读和工程落地清单。
+> 版权说明：本站不逐字镜像或逐字翻译原文。以下是面向 AI Coding / Harness 引擎的中文转述、结构化导读和工程落地清单。
 
 ## 为什么这篇对本站很关键
 
@@ -149,7 +149,7 @@ AI Coding 中应持久化：
 
 - 任务切片。
 - 上下文包。
-- 当前 代码差异 摘要。
+- 当前代码差异 摘要。
 - 测试结果。
 - 审查 Agent 问题清单。
 - 人工关口决策。
@@ -226,21 +226,21 @@ Harness 层
 - [ ] 每个节点有明确输入输出。
 - [ ] 每个节点有失败处理。
 - [ ] 高风险节点可中断。
-- [ ] 审查 Agent节点并行后进入汇总裁决 Agent。
+- [ ] 审查 Agent 节点并行后进入汇总裁决 Agent。
 - [ ] 证据写入统一 artifact。
 
 ### 设计团队流程
 
 - [ ] 低风险任务走轻量流程。
 - [ ] 高风险任务走完整 Harness。
-- [ ] 人类介入只处理裁决，不做第一层筛查。
-- [ ] 指标追踪审查 Agent噪音和逃逸缺陷。
+- [ ] 人工介入只处理裁决，不做第一层筛查。
+- [ ] 指标追踪审查 Agent 噪音和逃逸缺陷。
 
 ## 和本站模块的映射
 
 - Harness 引擎：三层架构、工具、状态、图、人在回路。
 - 工作流：Explore / Plan / Implement / Verify / Review。
-- AI 原生验收：审查 Agent 组、汇总裁决 Agent、人工关口。
+- AI 先审验收：审查 Agent 组、汇总裁决 Agent、人工关口。
 - 团队落地：运行时 选择、CI 集成、指标和治理。
 
 ## 原文链接

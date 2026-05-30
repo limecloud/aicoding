@@ -12,7 +12,7 @@ Anthropic、OpenAI 和 LangChain 的表达不完全一样，但方向一致：AI
 
 ## Anthropic：生成与评价分离
 
-Anthropic 的 [Harness design for long-running application development](https://www.anthropic.com/engineering/harness-design-long-running-apps) 强调：长时间自主开发不是“让一个 Agent 一直写”，而是要靠 Harness 设计来维持方向、质量和可验证性。
+Anthropic 的 [Harness design for long-running application development](https://www.anthropic.com/engineering/harness-design-long-running-apps) 强调：长时间自主开发不是“让一个 Agent 一直写”，而是靠 Harness 维持方向、质量和可验证性。
 
 关键做法：
 
@@ -83,5 +83,5 @@ Harness 的目的不是堆更多 Agent、更多提示词、更多检查，而是
 3. **实现和评价分离**：实现 Agent 不批准自己，评价者必须独立、只读、绑定证据。
 4. **工具必须分级**：读工具、写工具、生产工具、不可逆工具的权限和人工关口不同。
 5. **状态必须可恢复**：长任务要有交接、检查点、证据库，而不是依赖聊天历史。
-6. **人类介入是系统节点**：不是失败兜底，而是对高风险、争议和产品判断的正式关口。
+6. **人工介入是系统节点**：不是失败兜底，而是对高风险、争议和产品判断的正式关口。
 7. **Harness 需要持续删减**：模型变强后，旧脚手架可能变成成本和延迟，应定期验证是否仍有价值。
