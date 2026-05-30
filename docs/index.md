@@ -26,7 +26,7 @@ features:
   - title: 工作流优先
     details: 不把 AI Coding 当成代码补全，而是重建从需求到发布的交付链路。
   - title: 全景知识库
-    details: 覆盖模型、上下文、工具、协议、运行时、验收、安全、数据、合规、成本和团队落地。
+    details: 覆盖模型、上下文、工具、协议、运行时、验收、安全、数据、成本和团队落地。
   - title: Harness 引擎
     details: 用工具、权限、工作流图、证据库和人工关口，把 AI 能力装进可控的工程系统。
   - title: AI 先审
@@ -41,6 +41,14 @@ features:
     details: 不追求每次跑满流程，而是按风险和 Token 预算选择简化、标准或严控模式。
 ---
 
+## 关键趋势图
+
+这张图是本站的核心入口：AI Coding 的社区主题正在从 **Weights**、**Context**，继续往 **Harness 引擎** 迁移。也就是说，后续真正拉开差距的，不只是模型和上下文，而是谁能把工具、协议、权限、审查、证据和人工关口组织成稳定系统。
+
+![AI 社区主题从 Weights、Context 转向 Harness 引擎](/images/harness-engine-shift.svg)
+
+> 点击图片可放大查看。
+
 ## 大模块
 
 <div class="ac-stage-grid">
@@ -50,11 +58,11 @@ features:
   </div>
   <div class="ac-stage-card">
     <h3>2. 全景知识库</h3>
-    <p>梳理工具生态、上下文、协议、评估、安全、数据、成本、合规和失败模式。</p>
+    <p>梳理工具生态、上下文、协议、评估、安全、数据、成本和失败模式。</p>
   </div>
   <div class="ac-stage-card">
     <h3>3. 工作流</h3>
-    <p>用需求切片、上下文包、实现循环和交接协议，把大任务拆成能验收的小切片。</p>
+    <p>用 PRD、任务切片、上下文包、实现循环和交接协议，把大任务拆成能验收的小切片。</p>
   </div>
   <div class="ac-stage-card">
     <h3>4. Harness 引擎</h3>

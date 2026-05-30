@@ -1,6 +1,6 @@
 # AI Coding 全景知识地图
 
-AI Coding 不是“用 AI 写代码”的单点技巧，而是一套覆盖模型、上下文、工具、运行时、审查、验收、发布、安全、数据、合规、成本、组织和度量的工程系统。
+AI Coding 不是“用 AI 写代码”的单点技巧，而是一套覆盖模型、上下文、工具、运行时、审查、验收、发布、安全、数据、成本、组织和度量的工程系统。
 
 可以先用四层理解它：
 
@@ -17,13 +17,13 @@ AI Coding 不是“用 AI 写代码”的单点技巧，而是一套覆盖模型
 | Harness | 工具、MCP、工作流图、状态、权限 | Agent 如何安全执行长任务？ | Anthropic Harness、OpenAI Agents、LangGraph |
 | 验证 | 测试、AI 审查、红队、证据包 | 如何证明 AI 代码可信？ | Playwright trace、Copilot/Codex review、OWASP |
 | 交付 | CI/CD、发布、灰度、回滚、观测 | 如何进入真实生产？ | GitHub Actions、OpenTelemetry、release runbook |
-| 治理 | 组织规则、指标、成本、合规 | 谁负责？如何规模化？ | NIST SSDF、Google code review、团队指标 |
+| 治理 | 组织规则、指标、成本 | 谁负责？如何规模化？ | NIST SSDF、Google code review、团队指标 |
 
 ::: warning 完整不是默认答案
 全景知识库是地图，不是每个任务都必须跑满的清单。Token、工具时间和人的注意力有限时，应按风险选择简化、标准或严控模式。预算不足时优先缩小任务切片，而不是跳过高风险验收。
 :::
 
-## AI Coding 的 16 个知识域
+## AI Coding 的 15 个知识域
 
 1. **任务定义**：需求说明、issue、非目标、验收标准、任务切片。
 2. **上下文工程**：仓库规则、仓库地图、文档索引、代码引用、长期记忆。
@@ -39,8 +39,7 @@ AI Coding 不是“用 AI 写代码”的单点技巧，而是一套覆盖模型
 12. **工具生态**：Claude Code、Codex、Copilot、Cursor、Devin、OpenHands、Aider。
 13. **评估与基准**：SWE-bench、SWE-PolyBench、SetupBench、项目级 Benchmark。
 14. **观测与成本**：Token、CI 时间、人工审查时间、审查命中率、逃逸缺陷。
-15. **法务与合规**：版权、许可证、隐私、数据驻留、第三方资料边界。
-16. **组织落地**：角色、权限、审查策略、指标、成本、风险豁免。
+15. **组织落地**：角色、权限、审查策略、指标、成本、风险豁免。
 
 ## 阅读路线
 

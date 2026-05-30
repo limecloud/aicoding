@@ -39,7 +39,6 @@ const sidebar = [
       { text: '产品与视觉验收', link: '/landscape/product-and-design' },
       { text: '数据与迁移', link: '/landscape/data-and-migrations' },
       { text: '观测与成本', link: '/landscape/observability-and-cost' },
-      { text: '法务与合规', link: '/landscape/legal-and-compliance' },
       { text: '失败模式', link: '/landscape/failure-modes' },
       { text: '落地路线图', link: '/landscape/adoption-roadmap' }
     ]
@@ -48,9 +47,10 @@ const sidebar = [
     text: '工作流',
     items: [
       { text: '全流程地图', link: '/workflow/overview' },
-      { text: '需求与任务切片', link: '/workflow/prd-and-slicing' },
+      { text: 'PRD 与任务切片', link: '/workflow/prd-and-slicing' },
       { text: '上下文工程', link: '/workflow/context-engineering' },
       { text: '实现循环', link: '/workflow/implementation-loop' },
+      { text: '写代码实战方法', link: '/workflow/coding-playbook' },
       { text: '人机协作协议', link: '/workflow/handoff-protocol' }
     ]
   },
