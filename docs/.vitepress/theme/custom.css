@@ -264,3 +264,48 @@
     min-width: 1200px;
   }
 }
+
+.ac-lightbox__stage {
+  color-scheme: light;
+  background: #ffffff;
+}
+
+.ac-lightbox__stage svg,
+.ac-lightbox__stage svg * {
+  color: #2f3440 !important;
+}
+
+.ac-lightbox__stage svg text,
+.ac-lightbox__stage svg tspan,
+.ac-lightbox__stage svg .label,
+.ac-lightbox__stage svg .nodeLabel,
+.ac-lightbox__stage svg .edgeLabel {
+  fill: #2f3440 !important;
+  color: #2f3440 !important;
+}
+
+.ac-lightbox__stage svg .node rect,
+.ac-lightbox__stage svg .node polygon,
+.ac-lightbox__stage svg .node circle,
+.ac-lightbox__stage svg .node ellipse,
+.ac-lightbox__stage svg .node path {
+  fill: #f3f0ff !important;
+  stroke: #8b7cf6 !important;
+}
+
+.ac-lightbox__stage svg .edgePath path,
+.ac-lightbox__stage svg path.flowchart-link {
+  stroke: #4b5563 !important;
+}
+
+.ac-lightbox__stage svg marker path {
+  fill: #4b5563 !important;
+  stroke: #4b5563 !important;
+}
+
+.ac-lightbox__stage svg .edgeLabel,
+.ac-lightbox__stage svg .edgeLabel rect,
+.ac-lightbox__stage svg .labelBkg {
+  background: #ffffff !important;
+  fill: #ffffff !important;
+}
