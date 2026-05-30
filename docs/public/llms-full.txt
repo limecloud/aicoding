@@ -1,0 +1,36 @@
+# AI Coding Full Context
+
+This site defines an AI-native software engineering workflow.
+
+## Operating model
+
+AI Coding requires small vertical slices, explicit context packs, independent AI reviewers, evidence packages, and human arbitration. AI implementers should not approve their own work. Reviewers should be isolated, read-only, and evidence-bound.
+
+
+## Harness Engine
+
+The site treats Harness Engine as the system layer around models and context. It includes context assembly, planning, tool runtime, workflow graphs, reviewer swarm, evidence store, policy/security, human gates, release orchestration, telemetry, and feedback learning. It synthesizes patterns from Anthropic harness design for long-running apps, OpenAI's practical guide to building agents, and LangChain/LangGraph's distinction between frameworks, runtimes, and harnesses.
+
+## Acceptance model
+
+The acceptance pipeline is:
+
+1. Implementer Agent writes the slice.
+2. Self Check runs minimal verification.
+3. Reviewer Swarm runs independent reviews: spec, code, test, security, governance, UX, release.
+4. Test Skeptic attacks the tests and proposes mutation scenarios.
+5. Security Red Team looks for attack paths in auth, tenant, RBAC, data writes, secrets, CI/CD, dependencies, and logs.
+6. Judge Agent deduplicates findings, assigns severity, and produces a short human decision report.
+7. Human Arbiter accepts, rejects, requests fixes, or records a risk waiver.
+
+## Reviewer output
+
+Reviewers should output JSON with verdict, confidence, findings, missing_evidence, and human_decision_required. Findings require severity, type, file, line, claim, evidence, repro, suggested_fix, and status.
+
+## Appendix sources
+
+The appendix maps Claude Code Best Practices, OpenAI Building Agents, and LangChain framework/runtime/harness concepts into this site, especially verification-first workflows, explore-plan-code-review loops, rich context, subagents, permissions, MCP, hooks, skills, session management, non-interactive mode, and scaling patterns.
+
+## Human role
+
+Humans decide product behavior, risk acceptance, architecture direction, unresolved security concerns, and reviewer conflicts. Humans should not be forced to manually review all generated code before AI review.

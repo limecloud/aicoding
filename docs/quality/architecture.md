@@ -1,0 +1,38 @@
+# 架构与治理
+
+AI 会倾向于就地补代码、复制相似实现、创建新的抽象或兼容层。架构治理的目标是让 AI 在既有事实源内演进，而不是制造第二套系统。
+
+## 默认原则
+
+- **KISS**：选择最直接、最容易验证的实现。
+- **YAGNI**：没有当前需求，不预埋未来能力。
+- **DRY**：稳定重复才抽象，不为一次性复用制造跳转。
+- **SOLID**：职责清晰、接口专一、依赖抽象、避免中心文件膨胀。
+- **单一事实源**：每个能力必须能说清唯一 current。
+
+## Governance Reviewer 检查点
+
+| 检查点 | 问题 |
+| --- | --- |
+| current | 是否能说清当前唯一事实源？ |
+| compat | 是否新增长期兼容层？退出条件是什么？ |
+| deprecated | 是否继续在废弃路径加逻辑？ |
+| dead | 是否保留无运行时价值代码？ |
+| contract | API 变化是否同步契约、SDK、类型、文档？ |
+| config | 配置变化是否同步 example、默认值、部署文档？ |
+| release | 发布流程变化是否同步 runbook？ |
+
+## AI 架构审查 Prompt
+
+```text
+你是 Architecture / Governance Reviewer。不要修改代码。
+
+请审查当前 diff 是否违反：
+1. 单一事实源。
+2. current / compat / deprecated / dead 分类。
+3. KISS / YAGNI / DRY / SOLID。
+4. API、配置、发布、文档的同步要求。
+5. 是否把新逻辑堆进高频中心文件。
+
+每个 finding 必须说明：当前实现、违反规则、建议收敛路径、是否 blocker。
+```

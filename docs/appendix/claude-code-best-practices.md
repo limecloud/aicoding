@@ -1,0 +1,248 @@
+# 附录：Claude Code Best Practices 原文导读
+
+> 原文：<https://code.claude.com/docs/en/best-practices>
+>
+> 版权说明：本站不逐字镜像整篇官方文档。这里提供原文入口、章节级导读、中文转述、AI Coding 体系映射和可执行清单，方便团队在不复制原文的前提下落地实践。
+
+## 为什么这篇文章重要
+
+Claude Code Best Practices 是目前最接近一线 AI Coding 操作手册的官方资料之一。它不是只讲 Prompt，而是覆盖了工程环境、上下文、计划、验证、子 Agent、MCP、Hooks、权限和自动化使用方式。
+
+对本站来说，它补上了一个关键视角：**AI Coding 的最佳实践不是“让模型更聪明”，而是设计一个能让模型持续正确工作的 Harness**。
+
+## 原文主题地图
+
+| 原文主题 | 中文转述 | 本站对应模块 |
+| --- | --- | --- |
+| Customize your setup | 配置 Claude Code 的记忆、权限、工具、MCP、Hooks，让它符合项目工作方式 | Harness Engine |
+| Give Claude more tools | 给 Agent 可运行的验证工具，例如测试、lint、构建、浏览器、截图 | 验收、测试策略、证据包 |
+| Try common workflows | 探索、计划、实现、验证、提交，不要一上来让 AI 乱改 | 工作流 |
+| Optimize your workflow | 用清晰指令、上下文管理、子任务、检查点提升长任务稳定性 | 上下文工程、Harness |
+| Use headless mode | 用非交互模式把 Claude Code 接到脚本、CI、自动化流程 | 团队落地、工具选型 |
+| Use multi-Claude workflows | 多个会话/Agent 并行探索、实现、审查，降低单上下文压力 | Reviewer Swarm |
+| Use git worktrees | 并行任务隔离工作区，减少冲突和互相污染 | 工作流、团队落地 |
+
+## 1. 配置是第一生产力
+
+原文强调要让 Claude Code 理解项目环境，而不是每次重新解释。对 AI Coding 团队来说，这意味着要把规则沉淀到仓库事实源。
+
+建议落地为：
+
+- `AGENTS.md` / `CLAUDE.md`：项目规则、架构事实源、验证命令、禁止事项。
+- 权限配置：哪些命令可自动执行，哪些必须人工确认。
+- MCP：浏览器、issue、文档、数据库、监控等外部能力。
+- Hooks：在关键事件注入检查、上下文或审计。
+- Skills / subagents：把高频工作流封装成可复用能力。
+
+本站映射：这就是 Harness Engine 的骨架，不是可有可无的工具配置。
+
+## 2. 验证方式要前置
+
+Claude Code 的实践经验很明确：如果你给 Agent 一个能验证工作的方式，结果会更可靠。验证不能等到最后才补，而应该进入任务定义。
+
+AI Coding 任务应提前写清：
+
+```markdown
+## Verification Contract
+
+- 快速验证:
+- 完整验证:
+- UI 验证:
+- 安全验证:
+- 不可自动验证、需要人类裁决:
+```
+
+典型验证工具包括：
+
+- 单元测试、集成测试、E2E。
+- typecheck、lint、build。
+- Playwright 页面操作、截图、trace。
+- API 请求和数据库状态检查。
+- 日志、监控、CI 输出。
+
+本站映射：这直接对应 AI-native 验收里的 Evidence Package。
+
+## 3. Explore -> Plan -> Code -> Verify
+
+原文推荐先让 Claude 探索代码库，再计划，再实现。这个顺序对 AI Coding 很关键，因为 AI 最容易在不了解架构事实源时局部最优。
+
+推荐流程：
+
+```text
+Explore: 只读探索相关代码、规则、测试、契约
+Plan: 输出会改哪些文件、为什么改、如何验证
+Code: 只实现当前切片，不扩大范围
+Verify: 运行验证并修复明确失败
+Review: 交给独立 AI reviewer 审查
+```
+
+什么时候必须走完整流程：
+
+- 多文件修改。
+- 陌生模块。
+- 权限、数据、发布、配置、CI/CD。
+- API 契约或用户可见行为变化。
+- AI 需要推断架构边界。
+
+什么时候可以简化：
+
+- 单文件小修。
+- 明确 bugfix。
+- 文案、样式、注释、简单测试补充。
+
+## 4. 明确上下文，比长上下文更重要
+
+原文强调要给 Claude 具体、丰富的上下文。本站进一步收敛为 Context Pack：不要无脑塞更多内容，而是给最小充分事实。
+
+好的上下文包括：
+
+- 当前任务和非目标。
+- 相关文件路径。
+- 已知错误日志。
+- 期望输出格式。
+- 现有代码模式。
+- 验证命令。
+- 风险面。
+
+坏上下文包括：
+
+- “帮我优化一下”。
+- “看着改”。
+- 整个仓库 dump。
+- 没有说明 current 事实源。
+- 没有说明不允许做什么。
+
+## 5. Subagents 用来隔离上下文
+
+原文提到 subagents 对调查和验证很有用。它们的核心价值是隔离上下文：让子 Agent 读很多文件、做专项研究，然后把摘要交回主线。
+
+适合 subagent 的任务：
+
+- 探索某个模块的现有实现模式。
+- 找出所有调用链和影响面。
+- 独立审查边界条件。
+- 审查测试是否覆盖核心行为。
+- 安全红队检查权限和数据风险。
+- 比较多个实现方案。
+
+不适合 subagent 的任务：
+
+- 需要统一产品判断。
+- 上下文极少的小修。
+- 多个 Agent 同时写同一文件。
+- 没有 Judge 聚合的多 Agent 审查。
+
+本站映射：Reviewer Swarm 本质上是 subagent 模式在验收阶段的系统化应用。
+
+## 6. Headless / 自动化模式要接入风险路由
+
+Claude Code 支持非交互式和自动化使用，这对 CI、批处理、机器人流程很有价值。但本站建议不要无差别自动化，而要先经过 Risk Router。
+
+| 任务类型 | 自动化程度 | 原因 |
+| --- | --- | --- |
+| 格式化、lint 修复、简单测试补充 | 高 | 低风险、易验证 |
+| 文档、模板、代码生成 | 中 | 需要抽样审查 |
+| 多文件功能实现 | 中 | 需要 reviewer swarm |
+| 权限、数据、发布、CI/CD | 低 | 需要 human gate |
+| 生产操作、删除、迁移 | 极低 | 必须人工明确确认 |
+
+自动化的正确目标是减少等待，而不是绕过责任。
+
+## 7. Multi-Claude / 并行会话适合探索和审查
+
+原文提到多个 Claude 会话可以并行工作。AI Coding 中，这适合三类场景：
+
+1. **并行探索**：不同 Agent 分别调查前端、后端、测试、部署。
+2. **方案比较**：多个 Agent 提出不同实现方案，再由人或 Judge 选择。
+3. **独立审查**：Implementer 之外的 Agent 审代码、审测试、审安全。
+
+并行的风险：
+
+- 结论冲突。
+- 重复工作。
+- 修改冲突。
+- 上下文不一致。
+- 没有人类或 Judge 统一裁决。
+
+所以并行会话必须配套结构化输出和聚合机制。
+
+## 8. Git Worktrees 适合 AI 并行开发
+
+原文提到使用 git worktrees 支持多个 Claude 会话并行。这个实践很适合 AI Coding，因为它能隔离不同实现方向。
+
+适合场景：
+
+- 同一需求让多个 Agent 试不同方案。
+- 大功能拆成多个独立切片。
+- 一个 Agent 修 bug，另一个 Agent 写测试。
+- 一个 Agent 做实现，另一个 Agent 做审查复现。
+
+注意事项：
+
+- 每个 worktree 要有明确任务边界。
+- 不要让多个 Agent 修改同一事实源。
+- 合并前必须走统一验收和 Judge 汇总。
+- 需要清理废弃 worktree，避免 dead 实现残留。
+
+## 9. Prompt 应该更像任务契约
+
+原文中的很多建议可以归纳为：不要写模糊 Prompt，要写任务契约。
+
+推荐格式：
+
+```text
+目标：
+非目标：
+上下文：
+必须遵守：
+允许修改：
+禁止修改：
+验证方式：
+输出格式：
+如果不确定：
+```
+
+对 AI Coding 来说，Prompt 不是临时聊天，而是 Harness 的输入协议。
+
+## 10. 对本站目录的改进建议
+
+参考 Claude Code Best Practices，本站后续应继续扩展：
+
+- Harness Engine：补 MCP、Hooks、Skills、Permissions、Subagents 的落地页。
+- 工作流：补 Explore / Plan / Code / Verify 的完整示例。
+- 验收：补 Browser QA、截图、trace、日志作为 evidence 的示例。
+- 团队：补 multi-session、headless mode、worktrees、CI agent 的协作方式。
+- 参考：补 Claude Code / Codex / LangGraph 的 Prompt 与配置模板。
+
+## 可执行清单
+
+### 仓库准备
+
+- [ ] 有 `AGENTS.md` 或 `CLAUDE.md`。
+- [ ] 写明默认验证命令。
+- [ ] 写明禁止事项和危险操作。
+- [ ] 写明 API、配置、发布的事实源。
+- [ ] 配置只读 reviewer 和可写 implementer 的权限边界。
+
+### 任务开始前
+
+- [ ] 任务已拆成小切片。
+- [ ] 有 Context Pack。
+- [ ] 有 Verification Contract。
+- [ ] 明确非目标。
+- [ ] 明确需要 human gate 的风险。
+
+### 实现后
+
+- [ ] Implementer 输出 Self-Check。
+- [ ] 独立 reviewer 审查实现。
+- [ ] Test Skeptic 审查测试。
+- [ ] Security Red Team 审查高风险面。
+- [ ] Judge 聚合为人类裁决摘要。
+
+## 原文链接
+
+- Claude Code Best Practices: https://code.claude.com/docs/en/best-practices
+- Claude Code Subagents: https://code.claude.com/docs/en/subagents
+- Claude Code Hooks: https://code.claude.com/docs/en/hooks
+- Anthropic Harness Design: https://www.anthropic.com/engineering/harness-design-long-running-apps

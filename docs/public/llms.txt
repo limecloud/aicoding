@@ -1,0 +1,16 @@
+# AI Coding
+
+AI Coding is a Chinese knowledge site for AI-native software engineering. It treats AI coding as an end-to-end delivery operating system, not only code generation.
+
+Core modules:
+
+- Guide: why AI Coding needs an operating model, maturity model, and fact sources.
+- Workflow: PRD slicing, context engineering, implementation loops, and handoff protocols.
+- Harness Engine: MCP, tool ecosystems, workflow graphs, security, orchestration, multi-agent patterns, evidence stores, and human gates.
+- Acceptance: AI-native acceptance, reviewer swarm, test skeptic, security red team, evidence package, and human arbiter.
+- Quality: architecture governance, testing strategy, security, release, and maintainability.
+- Team: operating model, roles, metrics, and tooling.
+- Reference: prompt library, reviewer JSON contract, checklists, and glossary.
+- Appendix: mapped reading notes for Claude Code Best Practices, OpenAI Building Agents, LangChain framework/runtime/harness concepts, and related industry sources.
+
+Most important concept: AI Coding is moving from weights and context toward harness engine design. Humans should not be the first bottleneck after AI generates code. AI reviewers should first examine the implementation, tests, security, governance, and evidence. Human owners should decide only high-risk, blocker, conflict, and product judgment items.

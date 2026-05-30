@@ -1,0 +1,34 @@
+{
+  "name": "aicoding",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "AI Coding knowledge site for AI-native software engineering workflows.",
+  "homepage": "https://limecloud.github.io/aicoding/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/limecloud/aicoding.git"
+  },
+  "license": "UNLICENSED",
+  "keywords": [
+    "ai-coding",
+    "agentic-coding",
+    "software-engineering",
+    "code-review",
+    "acceptance"
+  ],
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "predev": "node scripts/sync-public-markdown.mjs",
+    "dev": "vitepress dev docs",
+    "prebuild": "node scripts/sync-public-markdown.mjs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs",
+    "check:links": "npm run build"
+  },
+  "devDependencies": {
+    "mermaid": "^11.14.0",
+    "vitepress": "^1.6.4"
+  }
+}
