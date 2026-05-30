@@ -129,51 +129,138 @@
   }
 }
 
-/* Diagrams are evidence, not decoration: keep them readable on desktop and scrollable on mobile. */
+/* Diagrams stay in-flow by default; click them to inspect in a full-screen lightbox. */
+.vp-doc .ac-mermaid,
+.vp-doc img[src$="harness-engine-shift.svg"] {
+  cursor: zoom-in;
+}
+
 .vp-doc .ac-mermaid {
-  margin: 2rem calc((min(100vw, 1280px) - 100%) / -2);
-  padding: 1.25rem;
+  position: relative;
+  margin: 1.5rem 0 2rem;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.vp-doc .ac-mermaid::after,
+.vp-doc p:has(> img[src$="harness-engine-shift.svg"])::after {
+  content: "点击放大";
+  position: absolute;
+  right: 0.9rem;
+  top: 0.8rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  background: color-mix(in srgb, var(--vp-c-bg) 88%, transparent);
+  color: var(--vp-c-text-2);
+  font-size: 0.74rem;
+  font-weight: 700;
+  pointer-events: none;
 }
 
 .vp-doc .ac-mermaid__canvas {
-  min-width: 1180px;
+  min-width: 0;
 }
 
 .vp-doc .ac-mermaid__canvas svg {
   display: block;
-  width: auto;
-  min-width: 1500px;
-  max-width: none;
-  margin: 0 auto;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  height: auto;
+}
+
+.vp-doc p:has(> img[src$="harness-engine-shift.svg"]) {
+  position: relative;
 }
 
 .vp-doc img[src$="harness-engine-shift.svg"] {
   display: block;
-  width: min(1180px, 100%);
-  max-width: 1180px;
+  width: 100%;
+  max-width: 100%;
   margin: 1.5rem auto 2rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 20px;
   background: var(--vp-c-bg-soft);
 }
 
-@media (max-width: 760px) {
-  .vp-doc .ac-mermaid {
-    margin-left: -1rem;
-    margin-right: -1rem;
-    border-radius: 0;
-  }
-
-  .vp-doc .ac-mermaid__canvas {
-    min-width: 960px;
-  }
-
-  .vp-doc .ac-mermaid__canvas svg {
-    min-width: 760px;
-    width: auto;
-  }
+.ac-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  background: rgba(9, 14, 24, 0.86);
+  backdrop-filter: blur(10px);
 }
 
-.vp-doc .ac-mermaid__canvas svg[viewBox] {
-  min-width: 1500px;
+.ac-lightbox[hidden] {
+  display: none;
+}
+
+.ac-lightbox__stage {
+  max-width: min(96vw, 1600px);
+  max-height: 88vh;
+  overflow: auto;
+  border-radius: 22px;
+  background: var(--vp-c-bg);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
+}
+
+.ac-lightbox__stage svg,
+.ac-lightbox__stage img {
+  display: block;
+  width: auto;
+  max-width: none;
+  height: auto;
+}
+
+.ac-lightbox__stage svg {
+  min-width: 1600px;
+}
+
+.ac-lightbox__stage img {
+  min-width: min(1600px, 92vw);
+}
+
+.ac-lightbox__close {
+  position: fixed;
+  top: 1.2rem;
+  right: 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 999px;
+  padding: 0.45rem 0.8rem;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.ac-lightbox__hint {
+  position: fixed;
+  left: 50%;
+  bottom: 1.2rem;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  padding: 0.38rem 0.8rem;
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.82rem;
+}
+
+@media (max-width: 760px) {
+  .ac-lightbox {
+    padding: 1rem;
+  }
+
+  .ac-lightbox__stage {
+    max-width: 96vw;
+    max-height: 84vh;
+  }
+
+  .ac-lightbox__stage svg {
+    min-width: 1200px;
+  }
 }

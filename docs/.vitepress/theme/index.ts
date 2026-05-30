@@ -1,5 +1,5 @@
 import DefaultTheme from 'vitepress/theme'
-import { defineComponent, h, onMounted, watch } from 'vue'
+import { defineComponent, h, nextTick, onMounted, watch } from 'vue'
 import type { Theme } from 'vitepress'
 import { useRoute } from 'vitepress'
 import MermaidDiagram from './MermaidDiagram.vue'
@@ -61,6 +61,75 @@ async function writeClipboard(value: string) {
   }
 }
 
+
+function openDiagramLightbox(source: Element) {
+  const existing = document.querySelector('.ac-lightbox')
+  if (existing) existing.remove()
+
+  const overlay = document.createElement('div')
+  overlay.className = 'ac-lightbox'
+  overlay.setAttribute('role', 'dialog')
+  overlay.setAttribute('aria-modal', 'true')
+
+  const stage = document.createElement('div')
+  stage.className = 'ac-lightbox__stage'
+
+  const close = document.createElement('button')
+  close.className = 'ac-lightbox__close'
+  close.type = 'button'
+  close.textContent = '关闭'
+
+  const hint = document.createElement('div')
+  hint.className = 'ac-lightbox__hint'
+  hint.textContent = '滚动查看大图，按 Esc 关闭'
+
+  const clone = source.cloneNode(true) as Element
+  clone.removeAttribute('id')
+  stage.appendChild(clone)
+  overlay.append(close, stage, hint)
+  document.body.appendChild(overlay)
+  document.body.style.overflow = 'hidden'
+
+  const cleanup = () => {
+    document.body.style.overflow = ''
+    document.removeEventListener('keydown', onKeydown)
+    overlay.remove()
+  }
+
+  const onKeydown = (event: KeyboardEvent) => {
+    if (event.key === 'Escape') cleanup()
+  }
+
+  close.addEventListener('click', cleanup)
+  overlay.addEventListener('click', (event) => {
+    if (event.target === overlay) cleanup()
+  })
+  document.addEventListener('keydown', onKeydown)
+}
+
+function installDiagramLightbox() {
+  const targets = [
+    ...document.querySelectorAll('.ac-mermaid__canvas svg'),
+    ...document.querySelectorAll('img[src$="harness-engine-shift.svg"]')
+  ]
+
+  for (const target of targets) {
+    const element = target as HTMLElement
+    if (element.dataset.lightboxReady === 'true') continue
+    element.dataset.lightboxReady = 'true'
+    element.tabIndex = 0
+    element.setAttribute('role', 'button')
+    element.setAttribute('aria-label', '点击放大图表')
+    element.addEventListener('click', () => openDiagramLightbox(element))
+    element.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault()
+        openDiagramLightbox(element)
+      }
+    })
+  }
+}
+
 const CopyMarkdownButton = defineComponent({
   name: 'CopyMarkdownButton',
   setup() {
@@ -70,6 +139,12 @@ const CopyMarkdownButton = defineComponent({
       const update = () => {
         const existing = document.querySelector<HTMLButtonElement>('.ac-copy-md')
         if (existing) existing.dataset.path = route.path
+        const scheduleInstall = () => {
+          installDiagramLightbox()
+          window.setTimeout(installDiagramLightbox, 300)
+          window.setTimeout(installDiagramLightbox, 1000)
+        }
+        nextTick(scheduleInstall)
       }
       update()
       watch(() => route.path, update)
